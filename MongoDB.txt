@@ -1,0 +1,93 @@
+***********MongoDB*************
+http://www.codeproject.com/Articles/828392/Basics-of-MongoDB
+MongoDB is a document-oriented database, not a relational one. Non relational means it does not store data in tables but in the form of JSON document. The primary reason for moving away from the relational model is to make scaling out easier. Here in MongoDB row is replaced with document and table is replaced with collection. It can be thought of as a group of documents.
+
+Document is the basic unit of data for MongoDB, roughly equivalent to a row. It is a data structure composed of field and value pairs. MongoDB documents are similar to JSON objects. The values maybe documents, arrays, and arrays of documents.
+
+MongoDB is a high performance, scalable, open source, document-oriented database. It is in the NoSQL database category. Document oriented doesn't mean that it stores information in documents like PDF, Word documents and HTML. Instead MongoDB stores information in BSON documents. BSON is a binary-encoded serialization of JSON-like documents. BSON is designed to be lightweight, traversable and efficient.
+
+Why use MongoDB in MVC?
+•Faster Development: unlike relational systems Mongo doesn't require you to explicitly create a database, tables and columns; it's all handled automatically by the very nature of flexible schemas. It significantly cuts the development effort. 
+•Minimal Migrations: Mongo also minimizes data migrations. 
+•Easier Collaborations: Fewer migrations mean much less pain sharing and merging changes with other developers. 
+•Maintainable Design: With relational storage, building a rich model requires a lot of overhead to stitch together the results from many tables and then map that to separate models in your applications. This level of overhead either isn't justifiable or is just too difficult to maintain. This leads developers to constrain the code to fit the relational model resulting in highly procedural code, duplication, foreign key identifiers, cascading deletes and so on, scrambling all the business logic. All of this results in an application that is very difficult to maintain. 
+•Rich Behavior: As you start to create rich data models, you will find yourself adding rich behavior to those models as well. For example when order items are contained in an Order model, it's easier to have the Order model calculate the total instead of doing the center Controller or otherwise. 
+•Scalability: Mongo Architecture allows you to scale as your traffic increases. 
+•GridFS: Mongo also has a fantastic system, GridFS, for storing querying and associating files with data in your application.
+
+
+Features of MongoDB
+Indexing
+MongoDB supports generic secondary indexes, allowing a variety of fast queries, and provides unique, compound, and geospatial indexing capabilities as well.
+
+Stored JavaScript
+Instead of stored procedures, developers can store and use JavaScript functions and values on the server side.
+
+Aggregation
+MongoDB supports MapReduce and other aggregation tools.
+
+Schemaless
+MongoDB documents are Schemaless This gives developers a lot of flexibility in how they work with evolving data models.
+
+//show database names
+>show dbs
+//show collections in current database
+>show collections
+//show users in current database
+>show users
+//set any database to current database
+>use <db name>
+
+***************CRUD Operation******************
+> student = { "name":"binit", "age": 24, "subjects": ["math", "science", "litrature"] }
+{
+    "name" : "binit",
+    "age" : 24,
+    "subjects" : [
+        "math",
+        "science",
+        "litrature"
+    ]
+}
+> db.school.insert(student)
+WriteResult({ "nInserted" : 1 })
+
+> student1 = { "name":"ashok", "age": 28, "subjects": ["math", "science", "litrature"] }
+{
+    "name" : "ashok",
+    "age" : 28,
+    "subjects" : [
+        "math",
+        "science",
+        "litrature"
+    ]
+}
+> db.school.insert(student1)
+WriteResult({ "nInserted" : 1 })
+
+Read
+> db.school.findOne()
+You can also use pretty() method to get rows in more readable way.
+ db.school.find().pretty()
+{
+    "_id" : ObjectId("54396f072a17974b75791f26"),
+    "name" : "binit",
+    "age" : 24,
+    "subjects" : [
+        "math",
+        "science",
+        "litrature"
+    ]
+}
+{
+    "_id" : ObjectId("54396f702a17974b75791f27"),
+    "name" : "ashok",
+    "age" : 28,
+    "subjects" : [
+        "math",
+        "science",
+        "litrature"
+    ]
+}
+> db.school.find({"age":24})
+{ "_id" : ObjectId("54396f072a17974b75791f26"), "name" : "binit", "age" : 24, "subjects" : [ "math", "science", "litrature" ] }
