@@ -15,6 +15,15 @@ http://www.dotnetcurry.com/aspnet-mvc/1068/aspnet-mvc-exception-handling
 
 https://blogs.msdn.microsoft.com/webdev/2015/12/15/wcf-connected-service-visual-studio-extension-preview-for-asp-net-5-projects/
 http://www.dotnetcurry.com/nodejs/1143/nodejs-tutorial-series-beginner-experienced-developer
+http://teknosains.com/i/simple-crud-nodejs-mysql
+http://www.dotnetglobe.com/2015/10/simple-crud-operation-using-mean-stack.html
+http://techbrij.com/angularjs-cascade-dropdownlist-asp-net-mvc
+
+**************Excel**********
+http://www.seguetech.com/blog/2013/12/3/how-to-use-excel-script-database-table-updates
+https://sqlandme.com/2012/03/29/importing-data-from-excel-using-insert-statements/
+http://therealdanvega.com/blog/2010/08/04/create-sql-insert-statements-from-a-spreadsheet
+
 
 *********Techincal term********
 Rapid change
@@ -28,3 +37,4 @@ working with cutting dge tech
 **************************
 Concepts
 DevOps concepts.
+ building scalable web services.
