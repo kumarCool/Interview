@@ -91,3 +91,5 @@ You can also use pretty() method to get rows in more readable way.
 }
 > db.school.find({"age":24})
 { "_id" : ObjectId("54396f072a17974b75791f26"), "name" : "binit", "age" : 24, "subjects" : [ "math", "science", "litrature" ] }
+
+https://docs.mongodb.com/manual/meta/pdfs/

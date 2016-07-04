@@ -1,0 +1,377 @@
+http://www.dotnetcurry.com/aspnet/1049/crud-database-aspnet-webapi-angularjs
+
+AngularJS is one of the most popular client-side frameworks on the web. It is maintained by Google and helps in creating Single-Page Applications using HTML, CSS and JavaScript. This framework provides Model-View-Controller (MVC) on the client side and helps the developer to implement structural JavaScript on client-side. The Data-Binding and Dependency Injection features provided by Angular simplifies the heavy and complex JavaScript code on the client, which we used to write earlier to do the same task
+
+DataBinding: This provides an automatic synchronization of data in between data model and the User interface components. This synchronization is managed in such a way that when any changes occur in either Model or View, it is notified to one another.
+
+Module: Acts as a container for different components of the application e.g. Controller, Services, directives, etc. The bootstrapping of the application is specified by the Module. This is attached with DOM using ng-app directive.
+
+Controller: Controller is a repository for the actions to be exposed to the DOM. This is a JavaScript constructor function attached to the DOM using ng-controller directive. When the controller is attached with DOM a new injectable scope parameter will be available to the controller’s constructor function of the name $scope.
+
+Services: Component to act as a repository for the code to be shared across the application. Generally we can make use of it to define external services call from Angular application.
+
+
+
+ng-app: used to auto bootstrap the AngularJS application. This is typically applied to the root of HTML document e.g. , .
+
+· ng-controller: used to attach the controller class to the view. This helps to expose the action methods and the scope model from the controller to be accessible to view.
+
+· ng-model: used to bind the scope model declared in the controller to the UI elements e.g. input, select,etc.
+
+· ng-repeat: used to instantiate the template for each item in the source collection received from the scope of the controller.
+
+· ng-click: executes the action method form the controller class when the element on the View is clicked.
+
+
+
+Conclusion: The AngularJS framework provides some cool features for developing MVC based applications using HTML.  Modules, Controller and Services helps to implement a modular approach for application development on the client-side.
+AngularJS Module – Module in AngularJS is like a container. It can contain different parts of your application like – Controllers, Services, Filters, and Directives etc. You can have one or more than one module depending on how complex your application is. There are a couple of advantages of using Modules in AngularJS –
+
+•Bootstrapping of the application can be specified by module declaratively and hence they are easy to understand
+•Modules are reusable
+•Modules can be loaded in any order or even parallel because they delay execution
+•Testing is easier and faster as you need to load only those modules which are needed by the app.
+
+Configuration – needed to inject the constants and providers into configuration blocks. Config block is executed as soon as the module loads. The routing configuration is done in the configuration. It can also be used to configure modules and add HTTP interceptors.
+
+Routing – When you design a large application, you cannot build the entire application using a single controller or a single view. You will need multiple controllers and multiple views. In such situations, you will have to do a navigation between different views using routing.
+
+Controller – Controllers contains the logic and share state. Controllers are in-charge of your application and build the models for the views and directives. You can create multiple controllers for your application. Controller also provide commands for the view to act upon using number of events.
+
+Views – View is nothing but the information you want to render to the end users browser. A view is also called as AngularJS compiled DOM.
+
+Directives - Directives are extensions to HTML. They extend HTML instead of manipulating HTML. AngularJS provides a number of directives out-of-box. For example - ng-app, ng-controller, ng-view, ng-repeat etc. You can also build your own custom directives.
+
+$Scope – A $scope is the glue between a Controller and a View. The controller generates the Model on $scope. It acts as a ViewModel for the view
+
+Services – Services play a vital role in AngularJS. It is a component in AngularJS to perform a specific job like –
+•Executing a reusable logic which can communicate over HTTP
+•Performing computation on an algorithm
+•To implement validation checks against data
+•To invoke the local store stored in a browser or manipulate cookies
+•Act as an abstraction layer between any external resource and application’s components
+
+Two-Way Binding - AngularJS provides two-way data binding out-of-the-box. When model changes, the view reflects the changes without waiting for any specific event to be fired. Also, when view updates the model, the model gets updated automatically.
+
+
+***************Initial Steps**********
+Install-Package angularjs
+Install-Package jQuery
+Install-Package bootstrap
+
+***************Prototype**************
+http://www.dotnetcurry.com/angularjs/1252/angularjs-service-factory
+
+var app = angular.module('mymodule',[]);
+ 
+app.service('crudserv', function ($http) {
+ 
+    this.getEmployees = function () {
+   
+    };
+ 
+    this.post = function (employee) {
+          
+    };
+ 
+    this.put = function (id,employee) {
+        var promise = $http({
+  
+    };
+ 
+    this.delete = function (id) {
+  
+    };
+});
+
+var app = angular.module('mymodule',[]);
+ 
+app.factory('testfact', function () {
+    return {
+        value:0
+    }
+});
+********************Prototype 2************************
+Module.js
+
+/// <reference path='"../angular.js"'>
+var app;
+(function () {
+    app = angular.module("crudModule", []);
+})();
+</reference>
+
+
+Service.js
+
+
+/// <reference path='"../angular.js"'>
+/// <reference path='"Module.js"'>
+ 
+ 
+app.service('crudService', function ($http) {
+ 
+     
+    //Create new record
+    this.post = function (Employee) {
+        var request = $http({
+            method: "post",
+            url: "/api/EmployeesAPI",
+            data:  Employee
+        });
+        return request;
+    }
+    //Get Single Records
+    this.get = function (EmpNo) {
+       return $http.get("/api/EmployeesAPI/" + EmpNo);
+    }
+ 
+    //Get All Employees
+    this.getEmployees = function () {
+        return $http.get("/api/EmployeesAPI"); 
+    }
+ 
+ 
+    //Update the Record
+    this.put = function (EmpNo, Employee) {
+        var request = $http({
+            method: "put",
+            url: "/api/EmployeesAPI/" + EmpNo,
+            data: Employee
+        });
+        return request;
+    }
+    //Delete the Record
+    this.delete = function (EmpNo) {
+        var request = $http({
+            method: "delete",
+            url: "/api/EmployeesAPI/" + EmpNo
+        });
+        return request;
+    }
+});
+ 
+</reference></reference>
+ 
+/// <reference path='"../angular.js"'>
+ 
+ 
+/// <reference path='"Module.js"'>
+  
+//The controller is having 'crudService' dependency.
+//This controller makes call to methods from the service 
+app.controller('crudController', function ($scope, crudService) {
+    
+    $scope.IsNewRecord = 1; //The flag for the new record
+ 
+    loadRecords(); 
+ 
+    //Function to load all Employee records
+    function loadRecords() {
+        var promiseGet = crudService.getEmployees(); //The MEthod Call from service
+ 
+        promiseGet.then(function (pl) { $scope.Employees = pl.data },
+              function (errorPl) {
+                  $log.error('failure loading Employee', errorPl);
+              });
+    }
+     
+    //The Save scope method use to define the Employee object.
+    //In this method if IsNewRecord is not zero then Update Employee else 
+    //Create the Employee information to the server
+    $scope.save = function () {
+        var Employee = {
+            EmpNo: $scope.EmpNo,
+            EmpName: $scope.EmpName,
+            Salary: $scope.Salary,
+            DeptName: $scope.DeptName,
+            Designation: $scope.Designation
+        };
+        //If the flag is 1 the it si new record
+        if ($scope.IsNewRecord === 1) {
+            var promisePost = crudService.post(Employee);
+            promisePost.then(function (pl) {
+                $scope.EmpNo = pl.data.EmpNo;
+                loadRecords();
+            }, function (err) {
+                console.log("Err" + err);
+            });
+        } else { //Else Edit the record
+            var promisePut = crudService.put($scope.EmpNo,Employee);
+            promisePut.then(function (pl) {
+                $scope.Message = "Updated Successfuly";
+                loadRecords();
+            }, function (err) {
+                console.log("Err" + err);
+            });
+        }
+ 
+         
+             
+    };
+ 
+    //Method to Delete
+    $scope.delete = function () {
+        var promiseDelete = crudService.delete($scope.EmpNo);
+        promiseDelete.then(function (pl) {
+            $scope.Message = "Deleted Successfuly";
+            $scope.EmpNo = 0;
+            $scope.EmpName = "";
+            $scope.Salary = 0;
+            $scope.DeptName = "";
+            $scope.Designation = "";
+            loadRecords();
+        }, function (err) {
+            console.log("Err" + err);
+        });
+    }
+ 
+    //Method to Get Single Employee based on EmpNo
+    $scope.get = function (Emp) {
+        var promiseGetSingle = crudService.get(Emp.EmpNo);
+ 
+        promiseGetSingle.then(function (pl) {
+            var res = pl.data;
+            $scope.EmpNo = res.EmpNo;
+            $scope.EmpName = res.EmpName;
+            $scope.Salary = res.Salary;
+            $scope.DeptName = res.DeptName;
+            $scope.Designation = res.Designation;
+ 
+            $scope.IsNewRecord = 0;
+        },
+                  function (errorPl) {
+                       console.log('failure loading Employee', errorPl);
+                  });
+    }
+    //Clear the Scopr models
+    $scope.clear = function () {
+        $scope.IsNewRecord = 1;
+        $scope.EmpNo = 0;
+        $scope.EmpName = "";
+        $scope.Salary = 0;
+        $scope.DeptName = "";
+        $scope.Designation = "";
+    }
+});
+ 
+</reference></reference>
+******************************************
+/// <reference path="../angular.intellisense.js" />
+ 
+//The Module Declaration
+var app = angular.module('ngmodule', []);
+ 
+//Declaring Service
+app.service('ngservice', function ($http) {
+    //The function to read all Orders
+    this.getOrders = function () {    
+        var res = $http.get("/Orders");
+        return res;
+    };
+    //The function to read Orders based on filter and its value
+    //The function reads all records if value is not entered
+    //else based on the filter and its value, the Orders will be returned
+    this.getfilteredData = function (filter, value) {
+ var res;        
+if (value.length == 0) {
+            res  = $http.get("/Orders");
+            return res;
+        } else {
+            res = $http.get("/Orders/" + filter + "/" + value);
+            return res;
+        }
+         
+    };
+});
+ 
+//Declaring the Controller
+app.controller('ngcontroller', function ($scope, ngservice) {
+    $scope.Selectors = ["CustomerName", "SalesAgentName", "MobileNo"];
+    $scope.SelectedCriteria = ""; //The Object used for selecting value from <option>
+    $scope.filterValue = ""; //The object used to read value entered into textbox for filtering information from table
+ 
+    loadOrders();
+ 
+    //Function  to load all Orders
+    function loadOrders() {
+        var promise = ngservice.getOrders();
+        promise.then(function (resp) {
+            $scope.Orders = resp.data;
+            $scope.Message = "Call is Completed Successfully";
+        }, function (err) {
+            $scope.Message = "Call Failed " + err.status;
+        });
+    };
+ 
+    //Function to load orders based on a criteria
+    $scope.gerFilteredData = function () {
+        var promise = ngservice.getfilteredData($scope.SelectedCriteria, $scope.filterValue);
+        promise.then(function (resp) {
+            $scope.Orders = resp.data;
+            $scope.Message = "Call is Completed Successfully";
+        }, function (err) {
+            $scope.Message = "Call Failed " + err.status;
+        });
+    };
+});
+
+***************************************************
+public class EmployeesRepository
+{
+    private static ProjectTrackingDBEntities dataContext = new ProjectTrackingDBEntities();
+    public static List<Employee> GetAllEmployees()
+    {
+        var query = from employee in dataContext.Employees
+                    select employee;
+        return query.ToList();
+    }
+ 
+    public static List<Employee> SearchEmployeesByName(string employeeName)
+    {
+        var query = from employee in dataContext.Employees
+                    where employee.EmployeeName.Contains(employeeName)
+                    select employee;
+        return query.ToList();
+    }
+ 
+    public static Employee GetEmployee(int EmployeeID)
+    {
+        var query = from employee in dataContext.Employees
+                    where employee.EmployeeID == EmployeeID
+                    select employee;
+        return query.SingleOrDefault();
+    }
+ 
+    public static List<Employee> InsertEmployee(Employee e)
+    {
+        dataContext.Employees.Add(e);
+        dataContext.SaveChanges();
+        return GetAllEmployees();
+    }
+ 
+    public static List<Employee> UpdateEmployee(Employee e)
+    {
+        var emp = (from employee in dataContext.Employees
+                   where employee.EmployeeID == e.EmployeeID
+                   select employee).SingleOrDefault();
+        emp.EmployeeName = e.EmployeeName;
+        emp.Designation = e.Designation;
+        emp.ContactNo = e.ContactNo;
+        emp.EMailID = e.EMailID;
+        emp.SkillSets = e.SkillSets;
+        dataContext.SaveChanges();
+        return GetAllEmployees();
+    }
+ 
+    public static List<Employee> DeleteEmployee(Employee e)
+    {
+        var emp = (from employee in dataContext.Employees
+                   where employee.EmployeeID == e.EmployeeID
+                   select employee).SingleOrDefault();
+        dataContext.Employees.Remove(emp);
+        dataContext.SaveChanges();
+        return GetAllEmployees();
+    }
+}
+**********************************************
