@@ -1,0 +1,115 @@
+
+1. Introduction
+•ASP and ASP.NET WebForms
+•Web Standards and REST
+•JavaScript and AJAX
+•The MVC Design Pattern
+•Managing Dependencies
+ 
+2. ASP.NET MVC Architecture
+•ASP.NET Platform
+•Controllers, Models, and Views
+•URL Routing
+•Controller Actions
+•Razor View Engine
+•Extensibility
+ 
+
+3. Defining the Model
+•Defining the model
+•Understanding DBContext
+•Entity Framework and MVC Code First
+•Listing, Creating, Editing Data
+•Using an IoC Container
+ 
+4. Routes and URLs
+•Introduction to Routing
+•Defining Routes
+•Route Evaluation
+•The Controller Factory
+•Constraints
+•Exempting URLs
+ 
+
+5. Controllers and Actions
+•IController, ControllerBase, and Controller
+•Defining Actions
+•Action Selectors
+•Action Filters
+•HTTP Verbs
+•HttpContext and RouteData
+•Returning Data with ActionResult
+•Parameters and the Model Binder
+•Asynchronous Action Methods
+ 
+6. Views
+•View Engines
+•Templates and Scaffolding
+•Razor Syntax
+•ViewData and ViewBag
+•Strongly-Typed Views
+•Layout Pages
+•Custom Sections
+•Partial Views
+•Child Actions
+•Using a ViewModel Object
+ 
+
+7. HTML Helpers
+•Basic Helpers
+•Strongly-Typed Helpers
+•Declarative Helpers
+ 
+8. Data Validation
+•Data Annotations
+•Validation HTML Helpers
+•ModelState
+•IValidatableObject
+•Client Side Validation
+ 
+
+9. Authentication and Authorization
+•Using Windows Authentication
+•Configure Forms Authentication
+•Using the Authorize Attribute
+•Seeding Membership
+•Cross site request forgery
+ 
+10. Ajax
+•Controller Actions for Ajax
+•Ajax Helpers
+•Unobtrusive Ajax
+•Ajax with jQuery
+ 
+
+11. Web API
+•Using HTTP as an Application Protocol
+•Content Negotiation
+•Routing
+•ApiController
+•MediaTypeFormatters
+ 
+12. Building a Rich Client-Side UI
+•jQuery UI
+•jQuery Templates
+ 
+
+13. Mobile Clients
+•CSS 3 Media Queries
+•Adaptive Rendering
+•Mobile-Specific Views
+•Using a View Switcher
+ 
+14. Customizing and Extending ASP.NET MVC
+•ASP.NET MVC Pipeline
+•Advanced Routing
+•Custom
+ 
+
+
+Types of logging 
+Elmah
+Health Monitoring
+NLog
+Log4Net
+Model and Data Layer

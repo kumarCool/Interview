@@ -1,0 +1,8 @@
+*******TFS***********
+
+Changesets
+Workspace
+Automating the builds
+Project managament
+Merging and Branching
+Files in changesset

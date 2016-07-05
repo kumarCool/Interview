@@ -1,0 +1,5 @@
+1:What is the difference between Web Farm and Web Garden?
+2:can we define variable in interface c#
+3:how to handle exceptions in restful web service
+4:DataContractSerializer vs XmlSerializer: Pros and Cons of each serializer
+5:What type of binding is used in Webapi services

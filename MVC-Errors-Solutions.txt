@@ -1,0 +1,10 @@
+[HttpException]: A public action method &#39;DownloadFile&#39; was not found on controller 
+
+Solution 
+Orignal:
+[HttpPost]
+public FileContentResult DownloadFile(string filename)
+Changed :
+public FileContentResult DownloadFile(string filename)
+Remove the HTTP Verbs
+ @Html.ActionLink("Download file", "DownloadFile", "FileUpload", new { filename = "ExcelFile" },null)

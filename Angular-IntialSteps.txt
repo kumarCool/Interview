@@ -1,0 +1,6 @@
+C:\Users\u392295\Desktop\kumar\AngularJS\AngularJS1
+
+PM> Install-package angularJS
+PM> Install-package AngularJS.Route
+
+SampleDBEntities is DB name (SampleDB) followed by Entities
