@@ -1,0 +1,37 @@
+1:Differnce MVC and web
+2:Webapi
+3:difference in webapi and rest services
+4:MVC
+5:Routing
+6:Filters
+7:custom filters
+8:section,layout
+9:Jquery,ajax--sytax to call webapi
+10:deploymnet of MVC
+11:Nuget
+12:Bundling and minification
+13:model binding
+14:page  cycle of MVC
+14:different types of resultset
+15:viewbag,tempdata,viewdata
+16:Html helpers
+17:Httppost and httpget
+18:How can we detect that an MVC controller is called by POST or GET?
+ Request.HttpMethod == "POST"
+19:repository pattern in mvc 4
+20:display mode in MVC
+21:MVC model binders
+   Model binder maps HTML form elements to the model. It acts like a bridge between HTML UI and MVC model. 
+22:MVC Scaffolding
+Scaffolding is a technique in which the MVC template helps to auto-generate CRUD code. CRUD stands for create, read, update and delete.
+
+23:@Html.Partial("~/Views/Shared/_Product.cshtml", product);
+24:CustomControllerFactory in MVC4
+   http://www.c-sharpcorner.com/UploadFile/17e8f6/customcontrollerfactory-in-mvc4/
+
+public class CustomControllerFactory : IControllerFactory  
+{
+  
+}
+
+

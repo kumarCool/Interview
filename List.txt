@@ -1,0 +1,63 @@
+public class Client
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+public class ClientController : Controller
+{
+    private readonly List clients = new List()
+    {
+        new Client { Id = 1, Name = "Julio Avellaneda", Email = "julito_gtu@hotmail.com" },
+        new Client { Id = 2, Name = "Juan Torres", Email = "jtorres@hotmail.com" },
+        new Client { Id = 3, Name = "Oscar Camacho", Email = "oscar@hotmail.com" },
+        new Client { Id = 4, Name = "Gina Urrego", Email = "ginna@hotmail.com" },
+        new Client { Id = 5, Name = "Nathalia Ramirez", Email = "natha@hotmail.com" },
+        new Client { Id = 6, Name = "Raul Rodriguez", Email = "rodriguez.raul@hotmail.com" },
+        new Client { Id = 7, Name = "Johana Espitia", Email = "johana_espitia@hotmail.com" }
+    };
+ 
+    public ActionResult Index()
+    {
+        return View(clients);
+    }
+} 
+
+
+
+**************Class*****************
+
+[DataContract] 
+public class EmployeeInfo 
+{ 
+  [DataMember] 
+  public int EmpNo { get; set; } 
+  [DataMember]  
+  public string EmpName { get; set; } 
+} 
+
+
+EmployeeInfo[] Employees = null; 
+public Service() 
+{ 
+  Employees = new EmployeeInfo[] 
+  { 
+   new EmployeeInfo() {EmpNo=1,EmpName="A"}, 
+   new EmployeeInfo() {EmpNo=2,EmpName="B"}, 
+   new EmployeeInfo() {EmpNo=3,EmpName="C"}, 
+   new EmployeeInfo() {EmpNo=4,EmpName="D"}, 
+   new EmployeeInfo() {EmpNo=4,EmpName="E"}, 
+   new EmployeeInfo() {EmpNo=5,EmpName="F"}, 
+   new EmployeeInfo() {EmpNo=6,EmpName="G"}, 
+   new EmployeeInfo() {EmpNo=7,EmpName="H"}, 
+   new EmployeeInfo() {EmpNo=8,EmpName="I"}, 
+   new EmployeeInfo() {EmpNo=9,EmpName="J"}, 
+  }; 
+} 
+public EmployeeInfo[] GetEmployees() 
+{ 
+  return Employees; 
+} 
+
+*****************************************

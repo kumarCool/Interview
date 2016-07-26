@@ -1,0 +1,128 @@
+--------------IIS server--------------
+1:application pool
+2:domain service
+3:ssl
+4:deployment isssues
+5:session time  settings
+6:default port is  80
+7:HTTPS: default port 443
+8:Certficate request and renewal of certficate
+9:ISAPI (Internet Server API)
+10:Reister asp.net with IIS
+ aspnet_regiis -i
+ aspnet_regiis -ir Repair
+ aspnet_regiis -i
+11: Self signed  selfssl
+
+http://www.codeproject.com/KB/aspnet/ProcessAttache.aspx
+http://www.dotnetfunda.com/interview/exclusive/x4046-aspnet-interview-question-what-are-httphandler-and-httpmodules-and-how-.aspx
+http://www.dotnetfunda.com/articles/article821-beginners-guide-how-iis-process-aspnet-request-.aspx
+
+
+********IIS**********
+http://www.dotnetfunda.com/interview/exam1414-what-is-application-pool-in-iis-.aspx
+
+Before Giving the Definition : you can say like this, Concept of Application pool has from IIS 6.0 . 
+Application pools are used to separate sets of IIS worker processes that share the same configuration and application boundaries. Application pools used to isolate our web application for better security, reliability, and availability and performance and keep running with out impacting each other . The worker process serves as the process boundary that separates each application pool so that when one worker process or application is having an issue or recycles, other applications or worker processes are not affected. 
+One Application Pool can have multiple worker process Also. 
+
+Main Point to Remember: 
+1. Isolation of Different Web Application 
+2. Individual worker process for different web application 
+3. More reliably web application 
+4. Better Performance
+
+
+********Web Garden**********
+Application Pool with multiple worker process is called “Web Garden”.
+
+
+*******Classic  mode and Integrated mode***
+http://stackoverflow.com/questions/4890245/how-to-add-asp-net-4-0-as-application-pool-on-iis-7-windows-7
+http://www.serverintellect.com/support/windowsserver2008/pipeline-mode-selection.aspx
+
+The Integrated Pipeline is one of the new features of Internet Information Services (IIS) version 7. It allows your HttpModules to participate in all requests, including those for static content, PHP pages and images.
+
+The Classic Pipeline works just like IIS 6.0. All requests pass through the IIS pipeline first, and then if the file extension is mapped to ASP.NET ISAPI extension, then the request is handed to aspnet_isapi.dll and passes through the ASP.NET request pipeline. If the file is static file, ASP or PHP, it is handled by something else.
+
+http://securitywing.com/8-effective-ways-to-improve-iis-7-5-performance/
+http://www.codeproject.com/Tips/832570/IIS-Performance-Improvement
+Host Path:%systemroot%\System32\drivers\etc
+https://technet.microsoft.com/en-gb/magazine/2005.11.pumpupperformance.aspx
+http://www.monitis.com/blog/2011/06/13/top-8-application-based-iis-server-performance-tips
+http://www.codeproject.com/Articles/114910/What-is-the-difference-between-Web-Farm-and-Web-Ga
+
+***************Worker ProcessVSWEB FARM*****************
+Application Pools:
+Application Pools are logical groupings of web applications that will execute in a common process, thereby allowing greater granularity of which programs are grouped together in a single process. For instance, if you wanted every Web Application to execute in a separate process, you simply create an Application Pool for each application. The Application Pool is the heart of a website. 
+
+Application Pools enable us to isolate our Web Application for better security, reliability and availability.
+ The worker process serves as the process boundary that separates each Application Pool so that when a worker process or application is having an issue or recycles, other applications or worker processes are not affected.
+
+Worker Process: 
+Worker Process (w3wp.exe) runs the ASP.Net application in IIS. 
+This process is responsible to manage all the request and response that are coming from client system. All the ASP.Net functionality runs under the scope of worker process. When a request comes to the server from a client worker process is responsible to generate the request and response. In a single word we can say worker process is the heart of ASP.NET Web Application which runs on IIS. 
+
+WEB FARM:
+A hosting environment consisting of multiple web servers is said to be a Web Farm. Usually a load balancer is used to tie together the web servers, which routes incoming requests amongst the servers within the web farm. 
+
+WEB GARDEN:
+Web garden is a scenario in which a single machine has multiple asp.net worker processes running simultaneously. A web garden is utilized on a multi-core web server. To achieve more robust execution and processing of the C# ASP .NET web application threads, each worker process within the application pool would execute on an individual processor. It is created within Internet Information Services (IIS) by creating an application pool, selecting the Performance tab, and under the "Web Garden" section, setting the maximum number of worker processes to a value greater
+
+An Application Poll with multiple Worker process is called "Web Gardens". Many worker processes with the same Application Pool can sometimes provide better throughput performance and application response time. And each worker process should have their own Thread and Own Memory space. 
+Right Click -> Advance Setting -> Go To Process Model Section, set the Value for Maximum Worker Process.
+
+Advantages of Web Farm
+It provides high availability. If any of the servers in the farm goes down, Load balancer can redirect the requests to other servers.
+Provides high performance response for client requests.
+Provides better scalability of the web application and reduces the failure of the application.
+Session and other resources can be stored in a centralized location to access by all the servers.
+Advantages of Web Garden
+
+Provides better application availability by sharing requests between multiple worker process.
+Web garden uses processor affinity where application can be swapped out based on preference and tag setting.
+Less consumption of physical space for web garden configuration.
+Recycling application pools 
+
+****************Performance****************
+Configure logging option
+Disable ASP debugging
+Limit the ASP threads per processor
+Modify ASP queue length property
+Enable IIS HTTP Compression
+Configure HTTP expires header
+Enable Output Caching
+Enable HTTP Keep-Alives
+Grow a Web Garden on IIS
+Restart your App Pool
+
+****************authentication in IIS**************
+http://www.codeproject.com/Articles/98950/ASP-NET-authentication-and-authorization#5 steps to enable authentication and authorization using Windows
+
+Basic authentication :
+When basic authentication is selected the ‘userid’ and ‘password’ are passed by using Base64 encoded format . i.e. why the name is basic authentication. ‘Base64’ is a encoding and not encryption. So it’s very easy to crack. 
+
+Digest authentication :
+The problem associated with basic authentication is solved by using digest authentication. We saw in our previous section how easy it was to crack basic authentication. Digest authentication transfers data over wire as MD5 hash or message digest. This hash or digest is difficult to dechiper.
+In other words digest authentication replaces the lame basic authentication.
+
+Integrated Authentication:
+Integrated Windows authentication 
+(formerly called NTLM, and also known as Windows NT Challenge/Response authentication) uses either Kerberos v5 authentication or NTLM)
+lient sends the username and password to the server.
+• Server sends a challenge.
+• Client responds to the challenge with 24 byte result.
+• Servers checks if the response is properly computed by contacting the domain controller.
+• If everything is proper it grants the request.authentication )
+
+*************************************
+Impersonation is the process of executing code in the context of another user identity. By default, all ASP.NET code is executed using a fixed machine-specific account. To execute code using another identity we can use the built-in impersonation capabilities of ASP.NET. We can use a predefined user account or user's identity, if the user has already been authenticated using a windows account.
+
+<identity impersonate="true" userName="AccountNAME" password="Password" />
+
+***************Application Pool Identities**************
+
+
+
+
+

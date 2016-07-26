@@ -1,0 +1,28 @@
+$(document).ready(function () {
+    $("#login").click(function () {
+        $("#message").html("Logging in...");
+        var data = { "userid": $("#userid").val(), 
+                     "password": $("#password").val(), 
+                     "rememberme":$("#rememberme").prop("checked") };
+        $.ajax({
+            url: "/account/validateuser",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (status) {
+                $("#message").html(status.Message);
+                if (status.Success)
+                {
+                    window.location.href = status.TargetURL;
+                }
+            },
+            error: function () {
+                $("#message").html("Error while authenticating 
+                                    user credentials!");
+            }
+        });
+    });
+});
+
+
