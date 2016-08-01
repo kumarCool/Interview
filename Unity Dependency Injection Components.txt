@@ -1,8 +1,0 @@
-Unity Dependency Injection Components
-
-To start coding using Microsoft Unity Application block its important to understand the different elements. Below are the list of key Methods used in Dependency Injection using Microsoft Unity. 
-1.UnityContainer: Create a Unity Container
-2.Resolve: Returns an Object, resolve an instance of the default request type from the Continer.
-3.Register: Register a type mapping with the container. RegisterType tells the Container which class to use that implements the implement the interface.
-4.Dispose: Used to dispose the container reference.
-5.LifetimeManager: In Unity container Lifetime Manager is used by the Unity container to manages lifetime resolution of the objects and also manage the creation.
