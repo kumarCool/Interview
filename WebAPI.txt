@@ -1,4 +1,0 @@
-ASP.NET Web API is a framework for building HTTP services that can be accessed from various clients, such as browsers and mobile devices. ASP.NET Web API was introduced as part of ASP.NET MVC 4; however, it has its origins in WCF as WCF Web API. This new HTTP service model is simple to develop and c
-
-Command to install  nuget
-PM> Install-Package Microsoft.AspNet.WebApi.Core
